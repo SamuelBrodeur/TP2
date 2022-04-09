@@ -6,7 +6,8 @@ import java.sql.*;
 public class LoginModel {
     Connection connection;
 
-    public LoginModel () {
+    public LoginModel() {
+
         connection = SqliteConnection.Connector();
     }
 
@@ -19,19 +20,22 @@ public class LoginModel {
             return false;
         }
     }
+
     //Vérifie si les information d'usager et mot de passe correspondent au information trouvé dans la BD
-    public boolean isLogin (String user, String pass) throws SQLException {
+    public boolean isLogin(String user, String pass, String permission) throws SQLException {
 
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
-        String query = "select * from Login where UserName = ? and Password = ?";
+        String query = "select * FROM Login WHERE UserName = ? and Password = ? and Permission = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, user);
             preparedStatement.setString(2, pass);
+            preparedStatement.setString(3, permission);
 
             resultSet = preparedStatement.executeQuery();
+
             if (resultSet.next()) {
                 return true;
             } else {
@@ -45,4 +49,7 @@ public class LoginModel {
             resultSet.close();
         }
     }
+
+
+
 }

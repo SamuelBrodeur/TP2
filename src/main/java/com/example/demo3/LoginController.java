@@ -45,18 +45,29 @@ public class LoginController implements Initializable {
     }
     //Bouton de Connexion avec un utilisateur et mot de passe
     public void Login (ActionEvent event) throws SQLException, IOException {
-        //Si la connexion est valide, la scene Tableau est lancé
-        if ( loginModel.isLogin(username.getText(), password.getText())){
 
-          //Ouvre la scene Tableau
+        //Ouvre la scene Admin
 
-          Parent root = FXMLLoader.load(getClass().getResource("Tableau.fxml"));
-          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-          Scene scene = new Scene(root);
-          stage.setScene(scene);
-          stage.show();
+        if ( loginModel.isLogin(username.getText(), password.getText(),"Administrateur")) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+            //Ouvre la scene user
+        }else if( loginModel.isLogin(username.getText(), password.getText(), "Utilisateur")) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+        }
         //Si la connexion n'est pas réusi, un message d'erreur s'affiche
-        } else {
+         else {
             isSuccessful.setText("Utilisateur ou mot de passe invalide");
         }
     }
