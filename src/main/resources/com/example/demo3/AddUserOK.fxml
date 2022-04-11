@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="71.0" prefWidth="199.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.AddUserOKController">
+   <children>
+      <Button layoutX="72.0" layoutY="36.0" mnemonicParsing="false" onAction="#Close" text="OK" />
+      <Text layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur créé avec succès" />
+   </children>
+</AnchorPane>

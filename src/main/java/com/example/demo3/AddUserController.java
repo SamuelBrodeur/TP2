@@ -1,14 +1,23 @@
 package com.example.demo3;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+
 import javafx.event.Event;
 import javafx.fxml.FXML;
+
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
+
 import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -20,8 +29,17 @@ public class AddUserController implements Initializable {
     private static final int MIN_CARACTERE_NOM_UTILISATEUR = 2;
 
     @FXML
-    public ChoiceBox<String> Permission;
+    private ChoiceBox<String> Permission;
     public Label isConnected;
+
+    public CheckBox Dimanche ;
+    public CheckBox Lundi;
+    public CheckBox Mardi;
+    public CheckBox Mercredi;
+    public CheckBox Jeudi;
+    public CheckBox Vendredi;
+    public CheckBox Samedi;
+
 
     @FXML
     private TextField choixNom;
@@ -64,6 +82,8 @@ public class AddUserController implements Initializable {
 
     private boolean erreur;
 
+
+
     @FXML
     private void initialize() {
 
@@ -98,7 +118,7 @@ public class AddUserController implements Initializable {
     }
 
     @FXML
-    private void onSoumission(Event e) throws SQLException {
+    private void onSoumission(Event e) throws SQLException, IOException {
         // Réinitialise la détection d'erreur
         erreur = false;
 
@@ -113,13 +133,21 @@ public class AddUserController implements Initializable {
         // Affichage d'une rétroaction pour le clic sur le bouton soumission
         if (!erreur) {
 
+            // Nom d'utilidateur
             String User = choixPrenom.getText() + "." + choixNom.getText();
 
             //Ajouter les informations à la BD
-            AddUserModel.AddUser(choixPrenom.getText(), choixNom.getText(), choixTitre.getText(),choixdescription.getText());
+            //Ajouter les informations à la table AddUser(information de l'usager)
+            AddUserModel.AddUser(choixPrenom.getText(), choixNom.getText(), choixTitre.getText(),choixdescription.getText(), Dimanche, Lundi, Mardi, Mercredi, Jeudi, Vendredi, Samedi);
+            //Ajouter les informations à la table AddLogin(information de connection)
             AddUserModel.AddLogin(User,choixConfirmationMdp.getText(), Permission.getSelectionModel().getSelectedItem());
 
-            retroactionGlobale.setText("Aucune erreur dans le formulaire");
+            //Remplacer la fenêtre avec fenêtre la  de confirmation AddUserOKController
+            Parent root = FXMLLoader.load(getClass().getResource("AddUserOK.fxml"));
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
 
         } else {
@@ -310,15 +338,9 @@ public class AddUserController implements Initializable {
     //Change le label de connexion à la BD
     public AddUserModel AddUserModel = new AddUserModel();
 
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        if (AddUserModel.isDbConnected()) {
-            isConnected.setText("Connecté");
-            isConnected.setStyle("-fx-text-fill: green");
-        } else {
 
-            isConnected.setText("Déonnecté");
-            isConnected.setStyle("-fx-text-fill: red");
-        }
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }

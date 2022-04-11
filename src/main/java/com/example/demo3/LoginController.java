@@ -8,15 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-//Cette affiche l'état de connexion à la base et la connexion de l'utilisateur
-public class LoginController implements Initializable {
+//Cette classe affiche l'état de connexion à la base et fait la connexion de l'utilisateur à application
+public class LoginController {
     public LoginModel loginModel = new LoginModel();
 
     @FXML
@@ -24,31 +21,21 @@ public class LoginController implements Initializable {
     @FXML
     private TextField password;
     @FXML
-    //Label utilisé pour afficher l'état de connexion à la BD
-    private Label isConnected;
-    @FXML
-    //Label utilisé pour afficher l'état de connexion de l'usager
+    //Label utilisé pour afficher l'échec de connexion de l'usager à l'application
     private Label isSuccessful;
 
-    //Status de connexion a la BD
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        // TODO Auto-generated method stub
-        if (loginModel.isDbConnected()) {
-            isConnected.setText("Connecté");
-            isConnected.setStyle("-fx-text-fill: green");
-        } else {
 
-            isConnected.setText("Déonnecté");
-            isConnected.setStyle("-fx-text-fill: red");
-        }
-    }
+
     //Bouton de Connexion avec un utilisateur et mot de passe
     public void Login (ActionEvent event) throws SQLException, IOException {
 
-        //Ouvre la scene Admin
 
-        if ( loginModel.isLogin(username.getText(), password.getText(),"Administrateur")) {
+
+        //Ouvre la scene "Admin" si l'utilisateur est Administrateur
+        if ( loginModel.isLogin(username.getText(), password.getText(), "Administrateur")) {
+
+
+
 
             Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -56,8 +43,10 @@ public class LoginController implements Initializable {
             stage.setScene(scene);
             stage.show();
 
-            //Ouvre la scene user
+        //Ouvre la scene "User" si l'utilisateur est Utilisateur
         }else if( loginModel.isLogin(username.getText(), password.getText(), "Utilisateur")) {
+
+
 
             Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

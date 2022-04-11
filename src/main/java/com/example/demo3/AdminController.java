@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AdminController {
-
+    //Bouton de déconnexion change de fenêtre
     public void Logout(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -20,9 +20,10 @@ public class AdminController {
         stage.show();
 
     }
+    //Bouton ajouter (un nouvel utilisateur) change de fenêtre
     public void AddUser(ActionEvent event) throws  IOException {
 
-        Parent root = FXMLLoader.load(getClass().getResource("AddUser.fxml"));
+        Parent root = FXMLLoader. load(getClass().getResource("AddUser.fxml"));
         Stage stage = new Stage();;
         Scene scene = new Scene(root);
         stage.setScene(scene);

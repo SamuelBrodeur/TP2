@@ -7,19 +7,21 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.PasswordField?>
-<VBox alignment="CENTER" prefHeight="552.0" prefWidth="679.0" spacing="20.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.AddUserController">
+<ScrollPane prefHeight="515.0" prefWidth="760.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.AddUserController">
+    <content>
+<VBox alignment="CENTER" prefHeight="522.0" prefWidth="768.0" spacing="20.0">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -40,12 +42,12 @@
         <TextField fx:id="choixTitre" GridPane.columnIndex="1" GridPane.rowIndex="2" />
         <Text fx:id="retroactionTitre" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-        <Label GridPane.columnIndex="0" GridPane.rowIndex="3">Description : </Label>
+        <Label text="description" GridPane.columnIndex="0" GridPane.rowIndex="3">Message personnalisé : </Label>
         <TextArea fx:id="choixdescription" prefColumnCount="50" prefRowCount="4" GridPane.columnIndex="1" GridPane.rowIndex="3" />
         <Text fx:id="retroactionDescription" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
         <Label GridPane.columnIndex="0" GridPane.rowIndex="4">Permissions : </Label>
-        <ChoiceBox fx:id="Permission" prefHeight="31.0" prefWidth="200.0" value="Utilisateur" GridPane.columnIndex="1" GridPane.rowIndex="4" >
+        <ChoiceBox fx:id="Permission" prefHeight="31.0" prefWidth="200.0" value="Utilisateur" GridPane.columnIndex="1" GridPane.rowIndex="4">
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Administrateur" />
@@ -80,31 +82,31 @@
     <HBox fx:id="groupetable" spacing="20">
         <VBox fx:id="table">
             <Label text="Dimanche" />
-            <CheckBox />
+            <CheckBox fx:id="Dimanche" />
         </VBox>
         <VBox fx:id="table1">
             <Label text="Lundi" />
-            <CheckBox />
+            <CheckBox fx:id="Lundi" />
         </VBox>
         <VBox fx:id="table2">
             <Label text="Mardi" />
-            <CheckBox />
+            <CheckBox fx:id="Mardi" />
         </VBox>
         <VBox fx:id="table3">
             <Label text="Mercredi" />
-            <CheckBox />
+            <CheckBox fx:id="Mercredi" />
         </VBox>
         <VBox styleClass="table4">
             <Label text="Jeudi" />
-            <CheckBox />
+            <CheckBox fx:id="Jeudi" />
         </VBox>
         <VBox fx:id="table5">
             <Label text="Vendredi" />
-            <CheckBox />
+            <CheckBox fx:id="Vendredi" />
         </VBox>
         <VBox fx:id="table6">
             <Label text="Samedi" />
-            <CheckBox />
+            <CheckBox fx:id="Samedi" />
         </VBox>
     </HBox>
     <Text fx:id="retroactionGlobale" />
@@ -112,14 +114,11 @@
     <HBox alignment="BOTTOM_RIGHT" prefWidth="639.0">
         <Button onMouseClicked="#onSoumission">Créer mon compte</Button>
     </HBox>
-   <HBox alignment="BOTTOM_RIGHT" prefHeight="6.0" prefWidth="639.0">
-      <children>
-         <Label fx:id="isConnected" text="Label">
-            <font>
-               <Font size="9.0" />
-            </font>
-         </Label>
-      </children>
-   </HBox>
+   <HBox alignment="BOTTOM_RIGHT" prefHeight="6.0" prefWidth="639.0" />
+
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+
 
 </VBox>
+    </content>
+</ScrollPane>
