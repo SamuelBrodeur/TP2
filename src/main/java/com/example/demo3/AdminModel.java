@@ -1,11 +1,7 @@
 package com.example.demo3;
 
-import javafx.fxml.Initializable;
-import javafx.scene.control.ListView;
 
-import java.net.URL;
 import java.sql.*;
-import java.util.ResourceBundle;
 
 public class AdminModel {
 

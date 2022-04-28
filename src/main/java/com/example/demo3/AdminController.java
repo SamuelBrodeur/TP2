@@ -38,7 +38,7 @@ public class AdminController implements Initializable {
     @Override
 
     //charge la table
-    public  void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         Connection connection = SqliteConnection.Connector();
         data=FXCollections.observableArrayList();
 
@@ -60,6 +60,7 @@ public class AdminController implements Initializable {
 
         table.setItems(null);
         table.setItems(data);
+
     }
 
 
@@ -72,6 +73,7 @@ public class AdminController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 
@@ -81,8 +83,8 @@ public class AdminController implements Initializable {
 
         Parent root = FXMLLoader. load(getClass().getResource("AddUser.fxml"));
         Stage stage = new Stage();
-
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 
@@ -99,5 +101,32 @@ public class AdminController implements Initializable {
         //supprimer le user de la Base de donnée
         adminModel.deleteUser(table.getSelectionModel().getSelectedItem().getPrenom(),table.getSelectionModel().getSelectedItem().getNom(),table.getSelectionModel().getSelectedItem().getTitre());
         }
+    }
+    //recharger le tableau
+    public void Reload(ActionEvent event) throws SQLException {
+
+        Connection connection = SqliteConnection.Connector();
+        data=FXCollections.observableArrayList();
+
+        try {
+            ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM User");
+
+            while(resultSet.next()){
+                data.add(new User(resultSet.getString("Prenom"),resultSet.getString("Titre"),resultSet.getString("Titre")));
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            connection.close();
+        }
+
+        prenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
+        nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        titre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+
+        table.setItems(null);
+        table.setItems(data);
     }
 }

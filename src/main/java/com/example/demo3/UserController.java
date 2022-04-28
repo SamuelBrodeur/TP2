@@ -42,26 +42,26 @@ public class UserController  implements Initializable {
 
 
         if(userModel.getDimanche(userModel.GetLastLogin()) != null){
-            Dimanche.setStyle("-fx-text-fill: green;");
+            Dimanche.setStyle("-fx-underline: true;");
 
         }
         if(userModel.getLundi(userModel.GetLastLogin()) != null){
-            Lundi.setStyle("-fx-text-fill: green;");
+            Lundi.setStyle("-fx-underline: true;");
         }
         if(userModel.getMardi(userModel.GetLastLogin()) != null){
-            Mardi.setStyle("-fx-text-fill: green;");
+            Mardi.setStyle("-fx-underline: true;");
         }
         if(userModel.getMercredi(userModel.GetLastLogin()) != null){
-            Mercredi.setStyle("-fx-text-fill: green;");
+            Mercredi.setStyle("-fx-underline: true;");
         }
         if(userModel.getJeudi(userModel.GetLastLogin()) != null){
-            Jeudi.setStyle("-fx-text-fill: green;");
+            Jeudi.setStyle("-fx-underline: true;");
         }
         if(userModel.getVendredi(userModel.GetLastLogin()) != null){
-            Vendredi.setStyle("-fx-text-fill: green;");
+            Vendredi.setStyle("-fx-underline: true;");
         }
         if(userModel.getSamedi(userModel.GetLastLogin()) != null){
-            Samedi.setStyle("-fx-text-fill: green;");
+            Samedi.setStyle("-fx-underline: true;");
         }
 
     } catch (SQLException e) {
@@ -69,14 +69,7 @@ public class UserController  implements Initializable {
         }
     }
 
-    public void Reload(ActionEvent event) throws SQLException {
 
-
-
-
-
-
-    }
 
     //Grossir le texte
     public void plus(ActionEvent event) throws SQLException {
@@ -107,6 +100,7 @@ public class UserController  implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
 

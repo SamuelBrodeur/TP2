@@ -8,15 +8,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="383.0" prefWidth="653.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.UserController">
-   <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="653.0">
+<VBox alignment="TOP_CENTER" prefHeight="383.0" prefWidth="653.0" stylesheets="@Css.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.demo3.UserController">
+   <HBox alignment="TOP_RIGHT" prefHeight="38.0" prefWidth="653.0" stylesheets="@Css.css">
       <children>
-         <HBox prefHeight="26.0" prefWidth="568.0" />
+         <HBox prefHeight="30.0" prefWidth="568.0" />
       
           <Button mnemonicParsing="false" onAction="#Logout" text="Déconnexion" />
       </children>
    </HBox>
-   <ScrollPane prefHeight="200.0" prefWidth="653.0">
+   <ScrollPane prefHeight="200.0" prefWidth="653.0" stylesheets="@Css.css">
       <content>
          <Label fx:id="Text" prefHeight="198.0" prefWidth="599.0">
             <font>
@@ -25,36 +25,52 @@
          </Label>
       </content>
    </ScrollPane>
-   <HBox alignment="CENTER" prefHeight="32.0" prefWidth="653.0" spacing="15.0">
+   <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="653.0" spacing="10.0" stylesheets="@Css.css">
       <children>
-         <Label fx:id="Dimanche" text="Dimanche">
+         <Button mnemonicParsing="false" onAction="#moin" stylesheets="@Css.css" text="-" />
+         <Button mnemonicParsing="false" onAction="#plus" stylesheets="@Css.css" text="+" />
+      </children>
+      <padding>
+         <Insets right="50.0" />
+      </padding>
+   </HBox>
+   <HBox alignment="CENTER" prefHeight="77.0" prefWidth="653.0" spacing="15.0" stylesheets="@Css.css">
+      <children>
+         <Label fx:id="Dimanche" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Dimanche">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Lundi" text="Lundi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Lundi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Lundi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Mardi" text="Mardi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Mardi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Mardi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Mercredi" text="Mercredi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Mercredi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Mercredi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Jeudi" text="Jeudi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Jeudi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Jeudi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Vendredi" text="Vendredi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Vendredi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Vendredi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
-         <Label fx:id="Samedi" text="Samedi">
+               <Font size="22.0" />
+            </font>
+         </Label>
+         <Label fx:id="Samedi" style="-fx-font-weight: bold;" stylesheets="@Css.css" text="Samedi">
             <font>
-               <Font size="18.0" />
-            </font></Label>
+               <Font size="22.0" />
+            </font>
+         </Label>
       </children>
       <opaqueInsets>
          <Insets />
@@ -62,15 +78,6 @@
       <padding>
          <Insets top="1.0" />
       </padding>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-   </HBox>
-   <HBox alignment="CENTER" prefHeight="57.0" prefWidth="653.0">
-      <children>
-         <Button mnemonicParsing="false" onAction="#plus" text="+" />
-         <Button mnemonicParsing="false" onAction="#moin" text="-" />
-      </children>
    </HBox>
 
 </VBox>

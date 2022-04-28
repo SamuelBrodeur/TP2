@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class UserModel {
 
-
+    //Cette fonction retourne les champs Prenom, Nom, Titre et Description selons un id donnée
     public String getUserInfo(int id) throws SQLException {
 
         String prenom = null;
@@ -98,7 +98,7 @@ public class UserModel {
         Connection connection = SqliteConnection.Connector();
         try {
 
-            String query = "INSERT INTO LoginHistory(iD) VALUES(?);";
+            String query = "INSERT INTO LoginHistory(Userid) VALUES(?);";
 
             preparedStatement = connection.prepareStatement(query);
 
@@ -135,7 +135,7 @@ public class UserModel {
             int lastconnexion = 0;
             while (resultSet.next()) {
 
-                lastconnexion = (resultSet.getInt("iD"));
+                lastconnexion = (resultSet.getInt("Userid"));
 
             }
 
@@ -150,7 +150,7 @@ public class UserModel {
 
         }
     }
-
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getDimanche(int id) throws SQLException {
 
         String Dimanche = null;
@@ -180,7 +180,7 @@ public class UserModel {
         }
         return Dimanche;
     }
-
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getLundi(int id) throws SQLException {
 
         String Lundi = null;
@@ -211,6 +211,7 @@ public class UserModel {
         }
         return Lundi;
     }
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getMardi(int id) throws SQLException {
 
         String Mardi = null;
@@ -241,6 +242,7 @@ public class UserModel {
         }
         return Mardi;
     }
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getMercredi(int id) throws SQLException {
 
         String Mercredi = null;
@@ -271,6 +273,7 @@ public class UserModel {
         }
         return Mercredi;
     }
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getJeudi(int id) throws SQLException {
 
         String Jeudi = null;
@@ -301,6 +304,7 @@ public class UserModel {
         }
         return Jeudi;
     }
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getVendredi(int id) throws SQLException {
 
         String Vendredi = null;
@@ -331,6 +335,7 @@ public class UserModel {
         }
         return Vendredi;
     }
+    //Les fonctions suivantes retourne un String NULL ou non NULL pour les jours de semaines sélectionnés
     public String getSamedi(int id) throws SQLException {
 
         String Samedi = null;

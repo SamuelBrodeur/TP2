@@ -46,6 +46,7 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
 
@@ -56,6 +57,7 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
+            scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
             stage.setScene(scene);
             stage.show();
 
