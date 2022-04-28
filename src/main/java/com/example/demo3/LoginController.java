@@ -14,7 +14,9 @@ import javafx.stage.Stage;
 
 //Cette classe affiche l'état de connexion à la base et fait la connexion de l'utilisateur à application
 public class LoginController {
-    public LoginModel loginModel = new LoginModel();
+    private LoginModel loginModel = new LoginModel();
+    private UserModel usermodel = new UserModel();
+
 
     @FXML
     private TextField username;
@@ -26,15 +28,19 @@ public class LoginController {
 
 
 
-    //Bouton de Connexion avec un utilisateur et mot de passe
-    public void Login (ActionEvent event) throws SQLException, IOException {
+    public String usrid;
 
+    //Bouton de Connexion avec un utilisateur et mot de passe
+    public void Login(ActionEvent event) throws SQLException, IOException {
+
+
+        //Store les informations de user et mot de passe
+
+        usermodel.AddLoginHistory(usermodel.UserID(username.getText(), password.getText()));
 
 
         //Ouvre la scene "Admin" si l'utilisateur est Administrateur
-        if ( loginModel.isLogin(username.getText(), password.getText(), "Administrateur")) {
-
-
+        if (loginModel.isLogin(username.getText(), password.getText(), "Administrateur")) {
 
 
             Parent root = FXMLLoader.load(getClass().getResource("Admin.fxml"));
@@ -43,9 +49,8 @@ public class LoginController {
             stage.setScene(scene);
             stage.show();
 
-        //Ouvre la scene "User" si l'utilisateur est Utilisateur
-        }else if( loginModel.isLogin(username.getText(), password.getText(), "Utilisateur")) {
-
+            //Ouvre la scene "User" si l'utilisateur est Utilisateur
+        } else if (loginModel.isLogin(username.getText(), password.getText(), "Utilisateur")) {
 
 
             Parent root = FXMLLoader.load(getClass().getResource("User.fxml"));
@@ -56,9 +61,14 @@ public class LoginController {
 
         }
         //Si la connexion n'est pas réusi, un message d'erreur s'affiche
-         else {
+        else {
             isSuccessful.setText("Utilisateur ou mot de passe invalide");
         }
     }
+
+
+
+
+
 
 }

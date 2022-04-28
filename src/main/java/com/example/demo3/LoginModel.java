@@ -5,7 +5,8 @@ import java.sql.*;
 //Cette classe gère l'état de connexion à la base de donnée et la comparaison entre les champs usager et mot de passe
 public class LoginModel {
     Connection connection;
-    int allo;
+
+
 
     //Vérifie si les information d'usager et mot de passe correspondent au information trouvé dans la BD et retourne le iD
     public Boolean isLogin(String user, String pass, String permission) throws SQLException {
@@ -49,6 +50,9 @@ public class LoginModel {
 
 
         }
+
+
+
 
 }
 

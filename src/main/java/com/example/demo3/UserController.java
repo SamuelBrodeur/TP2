@@ -2,6 +2,7 @@ package com.example.demo3;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -9,10 +10,12 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.*;
+import java.util.ResourceBundle;
 
 
-public class UserController {
+public class UserController  implements Initializable {
 
     public Label Text;
     public Label Dimanche;
@@ -28,36 +31,50 @@ public class UserController {
     private double y = 198;
 
 
+    UserModel userModel = new UserModel();
 
-   /* private void SetText() throws SQLException {
-        Text.setText(new UserModel().getUserInfo(id.getiD()));
-    }*/
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
 
-    public void Reload(ActionEvent event) throws SQLException {
-        Text.setText(new UserModel().getUserInfo(3));
-        UserModel UserModel = new UserModel();
 
-        if(UserModel.getDimanche(3) != null){
+        try {
+        Text.setText(userModel.getUserInfo(userModel.GetLastLogin()));
+
+
+        if(userModel.getDimanche(userModel.GetLastLogin()) != null){
             Dimanche.setStyle("-fx-text-fill: green;");
+
         }
-        if(UserModel.getLundi(3) != null){
+        if(userModel.getLundi(userModel.GetLastLogin()) != null){
             Lundi.setStyle("-fx-text-fill: green;");
         }
-        if(UserModel.getMardi(3) != null){
+        if(userModel.getMardi(userModel.GetLastLogin()) != null){
             Mardi.setStyle("-fx-text-fill: green;");
         }
-        if(UserModel.getMercredi(3) != null){
+        if(userModel.getMercredi(userModel.GetLastLogin()) != null){
             Mercredi.setStyle("-fx-text-fill: green;");
         }
-        if(UserModel.getJeudi(3) != null){
+        if(userModel.getJeudi(userModel.GetLastLogin()) != null){
             Jeudi.setStyle("-fx-text-fill: green;");
         }
-        if(UserModel.getVendredi(3) != null){
+        if(userModel.getVendredi(userModel.GetLastLogin()) != null){
             Vendredi.setStyle("-fx-text-fill: green;");
         }
-        if(UserModel.getSamedi(3) != null){
+        if(userModel.getSamedi(userModel.GetLastLogin()) != null){
             Samedi.setStyle("-fx-text-fill: green;");
         }
+
+    } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void Reload(ActionEvent event) throws SQLException {
+
+
+
+
+
 
     }
 
@@ -84,14 +101,6 @@ public class UserController {
 
 
 
-
-
-
-
-
-
-
-
     //Déconnexion, retourne à la page de connexion
     public void Logout(ActionEvent event) throws IOException {
 
@@ -102,6 +111,7 @@ public class UserController {
         stage.show();
 
     }
+
 
 
 }

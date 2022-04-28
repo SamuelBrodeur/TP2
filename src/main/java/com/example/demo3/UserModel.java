@@ -52,6 +52,105 @@ public class UserModel {
         return ("Bonjour " + prenom + " " + nom + ", \nVous occupez la fonction de " + titre + "\n\n" + description);
     }
 
+    //La fonction retourne la id de l'usager qui possède les information d'utilisateur et mot de passe fournis.
+    public int UserID(String user, String pass) throws SQLException {
+
+        int userid = 0;
+        Connection connection = SqliteConnection.Connector();
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String query = "select * FROM Login WHERE UserName = ? and Password = ? ";
+
+        try {
+
+
+            preparedStatement = connection.prepareStatement(query);
+
+            preparedStatement.setString(1, user);
+            preparedStatement.setString(2, pass);
+
+
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+
+                userid = (resultSet.getInt("iD"));
+
+            }
+
+            return userid;
+
+
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+
+        }
+    }
+    //La fonction insert le id de l'usager dans la Base de donné LoginHistory
+    public void AddLoginHistory(int UserID) throws SQLException {
+
+        PreparedStatement preparedStatement = null;
+
+        Connection connection = SqliteConnection.Connector();
+        try {
+
+            String query = "INSERT INTO LoginHistory(iD) VALUES(?);";
+
+            preparedStatement = connection.prepareStatement(query);
+
+
+            preparedStatement.setInt(1, UserID);
+            preparedStatement.execute();
+        }
+        catch(Exception e){
+            System.out.println("Echec");
+        }
+        finally {
+            preparedStatement.close();
+            connection.close();
+        }
+    }
+    //La fonction va chercher le dernier utilisateur connecté
+    public int GetLastLogin() throws SQLException {
+
+
+        Connection connection = SqliteConnection.Connector();
+
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        String query = "SELECT * FROM LoginHistory WHERE iD=(SELECT max(iD) FROM LoginHistory) ";
+
+        try {
+
+
+            preparedStatement = connection.prepareStatement(query);
+
+
+            resultSet = preparedStatement.executeQuery();
+            int lastconnexion = 0;
+            while (resultSet.next()) {
+
+                lastconnexion = (resultSet.getInt("iD"));
+
+            }
+
+            return lastconnexion;
+
+
+        } catch (Exception e) {
+            return 0;
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+
+        }
+    }
+
     public String getDimanche(int id) throws SQLException {
 
         String Dimanche = null;

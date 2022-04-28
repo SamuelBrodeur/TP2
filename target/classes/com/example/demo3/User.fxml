@@ -72,6 +72,5 @@
          <Button mnemonicParsing="false" onAction="#moin" text="-" />
       </children>
    </HBox>
-   <Button mnemonicParsing="false" onAction="#Reload" text="Rafraîchir" />
 
 </VBox>
