@@ -112,7 +112,7 @@ public class AdminController implements Initializable {
             ResultSet resultSet = connection.createStatement().executeQuery("SELECT * FROM User");
 
             while(resultSet.next()){
-                data.add(new User(resultSet.getString("Prenom"),resultSet.getString("Titre"),resultSet.getString("Titre")));
+                data.add(new User(resultSet.getString("Prenom"),resultSet.getString("Nom"),resultSet.getString("Titre")));
             }
 
 

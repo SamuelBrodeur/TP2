@@ -69,8 +69,12 @@ public class LoginController {
     }
 
 
-
-
-
-
+    public void Aide(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader. load(getClass().getResource("Aide.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(getClass().getResource("/com/example/demo3/Css.css").toExternalForm());
+        stage.setScene(scene);
+        stage.show();
+    }
 }

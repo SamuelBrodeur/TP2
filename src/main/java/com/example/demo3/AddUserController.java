@@ -4,6 +4,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -28,9 +30,10 @@ public class AddUserController implements Initializable {
     private static final int MIN_LENGTH_MDP = 5;
     private static final int MIN_CARACTERE_NOM_UTILISATEUR = 2;
 
+
     @FXML
     private ChoiceBox<String> Permission;
-    public Label isConnected;
+
 
     public CheckBox Dimanche ;
     public CheckBox Lundi;
@@ -86,6 +89,8 @@ public class AddUserController implements Initializable {
 
     @FXML
     private void initialize() {
+
+
 
         choixNom.focusedProperty().addListener((observableValue, aBoolean, newValue) -> {
 
